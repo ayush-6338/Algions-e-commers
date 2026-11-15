@@ -1,0 +1,25 @@
+{
+  "name": "skykart-ecommerce",
+  "private": true,
+  "type": "module",
+  "workspaces": [
+    "client",
+    "server"
+  ],
+  "scripts": {
+    "dev": "concurrently \"npm:dev:server\" \"npm:dev:client\"",
+    "dev:server": "npm --workspace server run dev",
+    "dev:client": "npm --workspace client run dev",
+    "start": "npm --workspace server run start",
+    "build": "npm --workspace client run build",
+    "lint": "npm --workspace client run lint && npm --workspace server run lint",
+    "test": "npm --workspace server run test",
+    "generate:images": "node database/scripts/generateImages.js",
+    "setup:data": "npm run generate:images && npm run seed",
+    "seed": "npm --workspace server run seed",
+    "seed:auth": "npm --workspace server run seed:auth"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.2"
+  }
+}
